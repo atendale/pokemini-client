@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Gallery() {
-    const username = "Lola"
+    const username = "lola"
     const [displayMessage, setDisplayMessage] = useState("");
-    const [pokeCollection, setPokeCollection] = useState("");
+    const [pokeCollection, setPokeCollection] = useState([]);
 
     const displayCollection = async () => {
         try {
@@ -16,11 +16,9 @@ function Gallery() {
             const data = await res.json();
             if (res.ok) {
                 setDisplayMessage(`Collection Retrieved, ${username}`);
-                setPokeCollection(data.collection);
-            } else {
-                setDisplayMessage(data.message || "Display failed");
+                setPokeCollection(data);
+                console.log(data);
             }
-
         }
         catch (err) {
             console.error(err);
@@ -28,12 +26,14 @@ function Gallery() {
         }
     }
     
-    displayCollection();
+    useEffect( () =>{
+        displayCollection();
+    }, [])
 
     return (
 
         <div id="gallery">
-            {displayMessage && <p>{displayMessage}</p>}
+            {/* {displayMessage && <p>{displayMessage}</p>} */}
             <div id="profile">
                 <div id="user-info">
                     <h2>{username}</h2>
@@ -41,7 +41,8 @@ function Gallery() {
                 <div id="stats"><p>Stats Will Display Here</p></div>
             </div>
             <div id="poke-gallery">
-                {pokeCollection.map((pokemon) => (
+                
+                {pokeCollection.length > 0 && pokeCollection.map((pokemon) => (
                     <div key={pokemon._id} className="poke-card">
                         <h3>{pokemon.name}</h3>
                         <h4>Poke Id: {pokemon.id}</h4>

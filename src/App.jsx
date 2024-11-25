@@ -13,6 +13,7 @@ function App() {
         <Link to= "/Login">Already a Trainer? Welcome Back!</Link>
         <br/>
         <Link to= "/Roll"> Roll for a New Pokemon!</Link>
+        <Link to= "/Gallery"> View Your Collection!</Link>
       </header>
     </div>
   );

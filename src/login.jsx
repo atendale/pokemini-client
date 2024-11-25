@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react"; 
 import { Link } from "react-router-dom";
+import { AuthContext } from "./AuthenticationContext"; 
 
 function Login() {
+    const { login } = useContext(AuthContext); 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginMessage, setLoginMessage] = useState("");
@@ -15,6 +17,7 @@ function Login() {
             });
             const data = await res.json();
             if (res.ok) {
+                login(data.token, data.user);  
                 setLoginMessage(`Login Successful! Welcome, ${data.user.username}`);
                 setUsername("");
                 setPassword("");
@@ -51,7 +54,8 @@ function Login() {
             <button id="logIn" onClick={handleLogin}>Log In</button>
             <br />
             <Link to="/">Back to Home</Link>
-            <Link to = "/stats-profile">Check Out Your Stats!</Link>
+            <br/>
+            <Link to="/roll">Roll for Pokemon!</Link>
         </div>
     );
 }
