@@ -18,6 +18,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/roll" element={<Roll />} />
+          {/* <Route path = "/logout" element={<Logout/>} /> */}
           <Route path="/gallery" element={<Gallery />} />
         </Routes>
       </AuthProvider>
