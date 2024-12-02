@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "./AuthenticationContext";
+import Header from "./header.jsx";
 
 function Login() {
     const { login } = useContext(AuthContext);
@@ -54,37 +55,49 @@ function Login() {
         }
     };
 
-    return (
-        <div id="login">
-            {loginMessage && <p>{loginMessage}</p>}
-            <label htmlFor="usernameField">Username: </label>
-            <input
-                type="text"
-                id="usernameField"
-                placeholder="Enter username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <br />
-            <label htmlFor="passwordField">Password: </label>
-            <input
-                type="password"
-                id="passwordField"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <br />
-            <button id="logIn" onClick={handleLogin}>Log In</button>
-            <br />
-            {logoutMessage && <p>{logoutMessage}</p>}
-            <button id="logOut" onClick={handleLogout}>Log Out</button>
-            <br/>
-            <Link to="/">Back to Home</Link>
-            <br/>
-            <Link to="/roll">Roll for Pokemon!</Link>
-        </div>
-    );
+    if (!token) {
+        return (
+            <div id="login">
+                <Header />
+                <div className="Log-Wrapper">
+                    {loginMessage && <p>{loginMessage}</p>}
+                    <label htmlFor="usernameField">Username: </label>
+                    <input
+                        type="text"
+                        id="usernameField"
+                        placeholder="Enter username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <br />
+                    <label htmlFor="passwordField">Password: </label>
+                    <input
+                        type="password"
+                        id="passwordField"
+                        placeholder="Enter password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <br />
+                    <button id="logIn" onClick={handleLogin}>Log In</button>
+                </div>
+            </div>
+        );
+    }
+    else {
+        return (
+            <div id="login">
+                <Header />
+                <div className="Log-Wrapper">
+                    {logoutMessage && <p>{logoutMessage}</p>}
+                    <h2>Sad to see you go!</h2>
+                    <button id="logOut" onClick={handleLogout}>Log Out</button>
+                </div>
+
+            </div>
+        );
+    }
+
 }
 
 export default Login;

@@ -7,10 +7,10 @@ import Login from "./login.jsx";
 import Register from "./register.jsx";
 import Roll from "./roll.jsx";
 import Gallery from "./gallery.jsx";
+import Trade from "./trade.jsx";
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
-
     <HashRouter>
       <AuthProvider> 
         <Routes>
@@ -20,6 +20,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/roll" element={<Roll />} />
           {/* <Route path = "/logout" element={<Logout/>} /> */}
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/trade" element={<Trade />}/>
         </Routes>
       </AuthProvider>
     </HashRouter>

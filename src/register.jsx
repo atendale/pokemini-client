@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Header from "./header.jsx";
 
 function Register() {
     const [username, setUsername] = useState("");
@@ -29,28 +30,32 @@ function Register() {
 
     return (
         <div id="register">
-            {registerMessage && <p>{registerMessage}</p>}
-            <label htmlFor="usernameField">Username: </label>
-            <input
-                type="text"
-                id="usernameField"
-                placeholder="Enter username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <br />
-            <label htmlFor="passwordField">Password: </label>
-            <input
-                type="password"
-                id="passwordField"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <br />
-            <button id="register" onClick={handleRegister}>Register</button>
-            <br />
-            <Link to="/Login">Proceed to Log-in</Link>
+            <Header />
+            <div className="Log-Wrapper">
+                {registerMessage && <p>{registerMessage}</p>}
+                <label htmlFor="usernameField">Username: </label>
+                <input
+                    type="text"
+                    id="usernameField"
+                    placeholder="Enter username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+                <br />
+                <label htmlFor="passwordField">Password: </label>
+                <input
+                    type="password"
+                    id="passwordField"
+                    placeholder="Enter password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <br />
+                <button id="register" onClick={handleRegister}>Register</button>
+                <br />
+                <Link to="/Login">Proceed to Log-in</Link>
+            </div>
+
         </div>
     );
 }
